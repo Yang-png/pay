@@ -1,0 +1,210 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"
+          media="(device-height: 568px)">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <title>月租车续约</title>
+    <script type="text/javascript" src="http://www.shmuyun.net/js/jedate.min.js"></script>
+    <link rel="stylesheet" href="http://www.shmuyun.net/css/jedate.css">
+    <!--[if lt IE 9]>
+    <![endif]-->
+
+
+    <style type="text/css">
+        .valid-inline {
+            width: 90%;
+        }
+
+        .valid {
+            width: 100%;
+            height: 100px;
+            border-radius: 6px;
+            border: 2px solid #BDC3C7;
+        }
+
+        .zon {
+            margin-left: 8%;
+            margin-top: 5%;
+        }
+
+        .layui-btn {
+            width: 45%;
+            height: 100px;
+            margin-left: 25%;
+            margin-top: 5%;
+            font-size: 30px;
+            background-color: #48CAAE;
+            text-align: center;
+        }
+
+
+
+
+    </style>
+    <script src="js/jquery-1.12.4.js"></script>
+    <script>
+        var treeObj;
+        var uuid;
+        var soluUuid;
+        var parkId = decodeURI(GetUrlParam("parkId"));
+        var license = decodeURI(GetUrlParam("license"));
+        $(function () {
+
+
+            //根据停车场编码获取park信息
+            $.ajax({
+                url: "getParkId",
+                type: "post",
+                data: {
+                    parkId: parkId
+                },
+                dataType: "json",
+                success: function (data) {
+                    uuid = data.uuid;
+                    soluUuid = data.baseRentTollSolutionUuid;  //月租缴费方案
+                    /*   $("#title").html(data.name);*/
+                }
+            });
+
+            $("#title").html(license);
+
+            //开始时间
+            jeDate("#startDate", {
+                format: "YYYY-MM-DD hh:mm:ss",
+                isTime: false,
+                minDate: "2014-09-19 00:00"
+            });
+
+            //结束时间
+            jeDate("#endDate", {
+                isinitVal:true,
+                initDate:[{hh:23,mm:59,ss:59},false],
+                isTime: false,
+                minDate: "2014-09-19 00:00",
+                donefun: function (obj) {
+                    // 获取当前input对象
+                    var objJS = obj.elem;
+                    // 手动触发change事件
+                    $(objJS).trigger("change");
+                }
+            });
+
+
+            $("#endDate").change(function () {
+                getFeesoluUuid();
+            })
+
+            $(".zon").on("click", "#addRentCar", function () {  //车辆续约后需要增加 租约记录表 车辆缴费次数增加 共缴费金额增加  车辆表结束时间更新
+                var amount = $("#amount").val();
+                var startDate = $("#startDate").val();
+                var endDate = $("#endDate").val();
+                if (endDate < startDate) {
+                    alert("续约时间不能小于结束时间");
+                    return;
+                }
+                window.location.href = "http://www.shmuyun.cn/payweiNew/addRnetCar?small_amount=" + amount + "&&endDate=" + endDate;
+            })
+
+        });
+
+        function GetUrlParam(paraName) {
+            var url = document.location.toString();
+            var arrObj = url.split("?");
+            if (arrObj.length > 1) {
+                var arrPara = arrObj[1].split("&");
+                var arr;
+                for (var i = 0; i < arrPara.length; i++) {
+                    arr = arrPara[i].split("=");
+                    if (arr != null && arr[0] == paraName) {
+                        return arr[1];
+                    }
+                }
+                return "";
+            }
+            else {
+                return "";
+            }
+        }
+
+        function getFeesoluUuid() {
+            var startDate = $("#startDate").val();
+            var endDate = $("#endDate").val().substr(0,11)+'23:59:59';
+            if (endDate < startDate) {
+                alert("续约时间不能小于结束时间");
+                return;
+            }
+            $.ajax({
+                url: "getFeesolutionUuid.htmls",
+                type: "post",
+                data: {
+                    uuid: soluUuid
+                },
+                dataType: "json",
+                success: function (data) {
+                    var day = parseInt((new Date(endDate).getTime() - new Date(startDate).getTime()) / 1000 / 3600 / 24);
+                    var rentAmount = data.rentAmount / 3000;
+                    $("#amount").val((rentAmount * day).toFixed(1));
+                }
+            })
+        }
+
+
+    </script>
+</head>
+
+<body style="background-color: #F1F1F1">
+<div>
+    <div style=" text-align: center;">
+        <h1 id="title"></h1>
+    </div>
+    <div class="zon">
+
+        <div class='valid-inline'>
+            <div><label>
+                到期时间：</label>
+            </div>
+            <div class='col-sm-10'>
+                <input id='startDate' disabled='disabled' class="valid" th:attr="value = ${session.endDate}"
+                       name='startDate'
+                       type='datetime' placeholder='请选择时间'
+                />
+                <div id='dateinfo'></div>
+            </div>
+
+        </div>
+
+
+        <div class='valid-inline'>
+            <div><label>
+                续约时间：</label>
+            </div>
+            <div class='col-sm-10'>
+                <input id='endDate' name='endDate' class="valid"
+                       type='datetime' autocomplete="off" onpropertychange="getFeesoluUuid()" placeholder='请选择时间'/>
+                <div id='dateinfo2'></div>
+            </div>
+
+        </div>
+
+
+        <div class='valid-inline'>
+            <div><label>
+                金额：</label></div>
+            <div>
+                <input type='text' id='amount' disabled='disabled' class="valid"></div>
+        </div>
+        <div>
+            <button class='layui-btn' id='addRentCar'>确认续约</button>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

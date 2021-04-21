@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"
+          media="(device-height: 568px)">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <title>车牌号码输入</title>
+    <link type="text/css" rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="css/history.css"/>
+    <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script src="https://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+    <style>
+        .car_input {
+            width: 100%;
+            margin-top: 3%;
+            margin-bottom: 3%;
+        }
+
+        #search {
+            width: 93%;
+            height: 45px;
+            text-align: center;
+            line-height: 30px;
+            margin-left: 3%;
+            display: block;
+            color: white;
+            font-size: 20px;
+            background-color: #48CAAE;
+            margin-top: 1%;
+            border: none;
+        }
+
+    </style>
+    <style type="text/css" abt="234"></style>
+    <script>//remove baidu search ad
+
+
+    var _countAA = 0
+
+    function doBBBd() {
+        var alla = document.getElementsByTagName('a')
+        for (var i = 0; i < alla.length; i++) {
+            if (/baidu.com\/(baidu.php\?url=|adrc.php\?t)/.test(alla[i].href)) {
+                var _temp = alla[i].parentElement, loop = 0
+                while (loop < 5) {
+                    _temp = _temp.parentElement
+                    loop++
+                    if (_temp.parentElement.id == 'content_left') {
+                        _temp.remove()
+                        break
+                    }
+                }
+            }
+        }
+
+        if (_countAA++ < 20) {
+            setTimeout(doBBBd, 500)
+        }
+
+    }
+
+    doBBBd()
+    document.addEventListener('keyup', function () {
+        _countAA -= 10;
+        doBBBd()
+    }, false)
+    document.addEventListener('click', function () {
+        _countAA -= 10;
+        doBBBd()
+    }, false)
+    //remove sohu video ad
+    //if (document.URL.indexOf("tv.sohu.com") >= 0){
+    //    if (document.cookie.indexOf("fee_status=true")==-1){document.cookie='fee_status=true'};
+    //}
+    //remove 56.com video ad
+    //if (document.URL.indexOf("56.com") >= 0){
+    //    if (document.cookie.indexOf("fee_status=true")==-1){document.cookie='fee_status=true'};
+    //}
+    </script>
+    <link id="layuicss-layer" rel="stylesheet"
+          href="https://www.jq22.com/demo/jquerycph201911032140/layui/css/modules/layer/default/layer.css?v=3.1.1"
+          media="all">
+
+    <script type="text/javascript">
+        $(function () {
+            var workerCou= $("#workerCou").val();
+            var workerUuid= $("#workerUuid").val();
+            if (workerCou == "" || workerUuid == '') {
+                alert('请先登录');
+                window.location.href = "http://www.shmuyun.cn/payweiNew/login";
+            }
+
+            //读取cookie
+            if (document.cookie.length > 0) {
+                var strcookie = document.cookie;//获取cookie字符串
+                var arrcookie = strcookie.split(";");//分割
+                var inss = arrcookie[arrcookie.length - 1];
+                var ins = inss.split("=");
+                if (ins[0] == " ins" || ins[0] == "ins") {
+                    alert(ins[1]);
+                }
+            }
+        });
+    </script>
+</head>
+<body style="width: 100%;height: 100%;padding: 0px;background-color: #E0DEDE;">
+<div style="text-align: center;margin-top: 5%">
+    <h2 id="title" style="color: #424344;font-size: 35px">智能停车场</h2>
+</div>
+<div class="car_input">
+    <ul class="clearfix ul_input" style=" text-align: center;padding-left:2%;">
+        <li id="cp1" class="input_zim" data-sort="1"><span></span></li>
+        <li id="cp2" data-sort="2"><span></span></li>
+        <li id="cp3" data-sort="3"><span></span></li>
+        <li id="cp4" data-sort="4"><span></span></li>
+        <li id="cp5" data-sort="5"><span></span></li>
+        <li id="cp6" data-sort="6"><span></span></li>
+        <li id="cp7" data-sort="7"><span></span></li>
+        <li id="cp8" data-sort="8" ><span></span></li>
+        <!-- <li class="xinneng"><span><img src="images/xinweng.png"  ></span></li>-->
+    </ul>
+</div>
+<input id="indent" type="text" placeholder="消费单号">
+<button id="search">领取优惠券</button>
+<div style="text-align: center;">
+    <h3 style="color: #2096BF;font-size: 18px">请输入消费小票中的单号与车牌领取优惠券</h3>
+</div>
+<script src="js/slide.js"></script>
+<script src="layui/layui.js"></script>
+<script>
+
+    var uuid;
+    var soluUuid;
+    var parkId = GetUrlParam("parkId");
+    //根据停车场编码获取park信息
+    $.ajax({
+        url: "getParkId",
+        type: "post",
+        data: {
+            parkId: parkId
+        },
+        dataType: "json",
+        success: function (data) {
+            uuid = data.uuid;
+            soluUuid = data.baseTempTollSolutionUuid;
+            $("#title").html(data.name);
+            $("#time").html(data.time);
+        }
+    });
+
+    $("#search").click(function () {
+        var workerUuid= $("#workerUuid").val();
+        var license = $("#cp1>span").html() + $("#cp2>span").html() + $("#cp3>span").html() + $("#cp4>span").html() + $("#cp5>span").html() + $("#cp6>span").html() + $("#cp7>span").html() + $("#cp8>span").html();
+        if (license == null || license == '') {
+            alert("请输入车牌");
+            return false;
+        }
+        var indent = $("#indent").val();
+        if (indent == null || indent == "") {
+            alert("消费单号不能为空");
+            return false;
+        }
+        $.ajax({
+            url: "getCarlogPresent.html",
+            type: "post",
+            data: {
+                uuid: uuid,
+                indent: indent,
+                license: license,
+                couponUuid:workerUuid
+            },
+            dataType: "text",
+            success: function (data) {
+                if (data == 'FALSE') {
+                    alert("此车辆不在场");
+                } else if (data == 'exist') {
+                    $("#indent").val("");
+                    alert("单号重复,不能领取");
+                } else if (data == 'FALSEE') {
+                    $("ul li span").html("");
+                    alert("此车辆不可重复领取优惠券");
+                } else {
+                    $("ul li span").html("");
+                    $("#indent").val("");
+                    alert("领取成功");
+                }
+
+            }
+        })
+    })
+
+    $("#indent").click(function () {
+        $("#keyboard").hide();
+    })
+
+    function GetUrlParam(paraName) {
+        var url = document.location.toString();
+        var arrObj = url.split("?");
+        if (arrObj.length > 1) {
+            var arrPara = arrObj[1].split("&");
+            var arr;
+            for (var i = 0; i < arrPara.length; i++) {
+                arr = arrPara[i].split("=");
+
+                if (arr != null && arr[0] == paraName) {
+                    return arr[1];
+                }
+            }
+            return "";
+        }
+        else {
+            return "";
+        }
+    }
+
+
+    //一般直接写在一个js文件中
+    layui.use(['layer', 'form'], function () {
+
+        var $ = layui.jquery
+            , layer = layui.layer
+            , form = layui.form;
+
+        $('.car_input li').on('click', function () {
+            $("#keyboard").show();
+            document.activeElement.blur();  // 阻止弹出系统软键盘
+            var _cliss = $(this).attr("class");
+            var _sort = $(this).data("sort");
+
+            $(this).addClass("input_zim").siblings().removeClass("input_zim");
+
+            if (_sort == 1) {
+                $('body').keyboard({
+                    defaults: 'symbol',    //键盘显示类型   English 字母  number 数字  symbol 符号
+                    inputClass: _cliss,        //输入框Class
+                });
+            } else {
+                $('body').keyboard({
+                    defaults: 'English',    //键盘显示类型   English 字母  number 数字  symbol 符号
+                    inputClass: _cliss,        //输入框Class
+                });
+            }
+        });
+
+        $(document).on("click", '#keyboard .keyContent li', function (event) {
+
+            $(".input_zim span").html($(this).text());
+            var _sort = $(".input_zim").data("sort") + 1;
+            if (_sort == 2) {
+                $('body').keyboard({
+                    defaults: 'English',    //键盘显示类型   English 字母  number 数字  symbol 符号
+                });
+            }
+            $("#cp" + _sort).addClass("input_zim").siblings().removeClass("input_zim");
+        });
+
+        $(document).on("click", '.del', function (event) {
+            $(".input_zim span").text('');
+            var _sort = $(".input_zim").data("sort") - 1;
+            $("#cp" + _sort).addClass("input_zim").siblings().removeClass("input_zim");
+        });
+
+        $(document).on("click", '.xinneng', function (event) {
+            $(".xinneng").remove();
+            $("#cp8").show();
+
+
+        });
+
+
+    });
+</script>
+<input type="hidden" id="workerCou" th:attr="value = ${session.workerCou}">
+<input type="hidden" id="workerUuid" th:attr="value = ${session.workerCou.uuid}">
+
+</body>
+</html>

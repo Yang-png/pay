@@ -1,0 +1,154 @@
+body {
+    margin: 0
+}
+
+.history {
+    text-align: center;
+    border: none;
+
+}
+
+#search{
+    width: 93%;
+    height: 45px;
+    text-align: center;
+    line-height: 30px;
+    margin-left: 3%;
+    display: block;
+    color: white;
+    font-size: 20px;
+    background-color: #48CAAE;
+    margin-top: 1%;
+    border:none;
+}
+#indent{
+    width: 93%;
+    height: 45px;
+    line-height: 30px;
+    margin-left: 3%;
+    display: block;
+    color: black;
+    font-size: 20px;
+    margin-top: 1%;
+    border:none;
+}
+
+
+.word-break{
+    width: 22%;
+    height: 45px;
+    color: white;
+    background-color: #2096BF;
+    font-family: 微软雅黑;
+    font-size: 13px;
+    text-align: center;
+    line-height: 45px;
+    margin-left: 2%;
+    margin-top: 1%;
+    display: inline-block;
+}
+
+.x{
+    float: right;
+    margin-bottom: 42px;
+}
+
+li{list-style-type:none;}
+
+#loc{
+    text-align: left;
+    height: 36px;
+    border: 1px solid #ccc;
+    font-family: 微软雅黑;
+    font-size: 14px;
+    background-color: #eee;
+    width: 12%;
+}
+
+#idNumber1 {
+    width: 80%;
+    overflow: hidden;
+    text-align: left;
+    height: 2rem;
+    border: 1px solid #ccc;
+    font-family: 微软雅黑;
+    font-size: 14px
+}
+
+.delete:after {
+    clear: both;
+    content: '.';
+    display: block;
+    width: 0;
+    height: 0;
+    visibility: hidden
+}
+
+/*.delete > div {
+    width: 100%;
+    height: 3rem;
+    border: 1px solid #eeeeec;
+    background: #fff;
+    text-align: left;
+    padding-left: .8rem;
+    padding-top: 1rem;
+    font-family: 微软雅黑;
+    font-size: 13px;
+    box-sizing: border-box
+}*/
+
+/*#search {
+    width: 15%;
+    height: 2rem;
+    font-size: 16px;
+    line-height: 14px;
+    color: #000;
+    padding-bottom: 2px;
+    font-family: 微软雅黑
+}*/
+
+#his-dele {
+    width: 142px;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    display: inline-block;
+    background: #fff;
+    color: #000;
+    border: 1px solid #000;
+    text-align: center;
+    font-family: 微软雅黑;
+    box-sizing: border-box;
+    margin: 1rem auto;
+    display: block
+}
+
+#idNumber1 input[type=image] {
+    width: 1.16rem;
+    height: 1.16rem;
+    float: left;
+    margin-right: .42rem
+}
+
+#idNumber1 input[type=text] {
+    height: 1.16rem;
+    line-height: 1.16rem;
+    float: left;
+    color: #878787;
+    text-align: left;
+    font-size: .62rem;
+    background: 0 0
+}
+
+p {
+    width: 100%;
+    height: 3rem;
+    overflow: hidden;
+    clear: both;
+    border: 1px solid #eee;
+    background: #fff;
+    text-align: left;
+    padding-left: 1rem;
+    padding-top: 1rem;
+    margin-top: -.05rem;
+    box-sizing: border-box
+}

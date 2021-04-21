@@ -1,0 +1,100 @@
+10:04:48.293 paywei [main] INFO  com.demo.paywei.PayweiApplication - Starting PayweiApplication on DESKTOP-4IL9A7A with PID 5288 (F:\paywei\target\classes started by Yang in F:\paywei)
+10:04:48.295 paywei [main] INFO  com.demo.paywei.PayweiApplication - No active profile set, falling back to default profiles: default
+10:04:49.141 paywei [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+10:04:49.151 paywei [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+10:04:49.152 paywei [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+10:04:49.152 paywei [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.29]
+10:04:49.263 paywei [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+10:04:49.264 paywei [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 935 ms
+10:04:49.589 paywei [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+10:04:49.635 paywei [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+10:04:49.769 paywei [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+10:04:49.789 paywei [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+10:04:49.792 paywei [main] INFO  com.demo.paywei.PayweiApplication - Started PayweiApplication in 1.706 seconds (JVM running for 3.098)
+10:04:51.446 paywei [http-nio-8080-exec-1] INFO  o.a.tomcat.util.http.parser.Cookie - A cookie header was received [1600762349,1600829568; JSESSIONID=7DCA65C06AC25DC6177D13D6D0532AD2] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+10:04:51.450 paywei [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+10:04:51.451 paywei [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+10:04:51.454 paywei [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+10:04:51.764 paywei [http-nio-8080-exec-5] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+10:04:51.964 paywei [http-nio-8080-exec-5] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+10:07:42.416 paywei [main] INFO  com.demo.paywei.PayweiApplication - Starting PayweiApplication on DESKTOP-4IL9A7A with PID 3064 (F:\paywei\target\classes started by Yang in F:\paywei)
+10:07:42.422 paywei [main] INFO  com.demo.paywei.PayweiApplication - No active profile set, falling back to default profiles: default
+10:07:43.200 paywei [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+10:07:43.206 paywei [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+10:07:43.207 paywei [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+10:07:43.207 paywei [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.29]
+10:07:43.310 paywei [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+10:07:43.310 paywei [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 826 ms
+10:07:43.614 paywei [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+10:07:43.658 paywei [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+10:07:43.784 paywei [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+10:07:43.802 paywei [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+10:07:43.804 paywei [main] INFO  com.demo.paywei.PayweiApplication - Started PayweiApplication in 1.595 seconds (JVM running for 3.656)
+10:07:43.838 paywei [http-nio-8080-exec-1] INFO  o.a.tomcat.util.http.parser.Cookie - A cookie header was received [1600762349,1600829568; JSESSIONID=1D7EF8299907767EE8D1FBB65F0144EC] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+10:07:43.843 paywei [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+10:07:43.843 paywei [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+10:07:43.846 paywei [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+10:07:44.090 paywei [http-nio-8080-exec-3] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+10:07:44.382 paywei [http-nio-8080-exec-3] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+10:09:40.253 paywei [main] INFO  com.demo.paywei.PayweiApplication - Starting PayweiApplication on DESKTOP-4IL9A7A with PID 18712 (F:\paywei\target\classes started by Yang in F:\paywei)
+10:09:40.255 paywei [main] INFO  com.demo.paywei.PayweiApplication - No active profile set, falling back to default profiles: default
+10:09:41.178 paywei [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+10:09:41.187 paywei [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+10:09:41.188 paywei [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+10:09:41.188 paywei [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.29]
+10:09:41.320 paywei [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+10:09:41.320 paywei [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1024 ms
+10:09:41.721 paywei [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+10:09:41.774 paywei [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+10:09:41.937 paywei [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+10:09:41.958 paywei [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+10:09:41.960 paywei [main] INFO  com.demo.paywei.PayweiApplication - Started PayweiApplication in 1.981 seconds (JVM running for 4.633)
+10:09:43.160 paywei [http-nio-8080-exec-1] INFO  o.a.tomcat.util.http.parser.Cookie - A cookie header was received [1600762349,1600829568; JSESSIONID=E801239E76E02B08F1E623F8569923C9] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+10:09:43.164 paywei [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+10:09:43.164 paywei [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+10:09:43.172 paywei [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 8 ms
+10:09:43.219 paywei [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+10:09:43.454 paywei [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+10:11:37.626 paywei [main] INFO  com.demo.paywei.PayweiApplication - Starting PayweiApplication on DESKTOP-4IL9A7A with PID 16244 (F:\paywei\target\classes started by Yang in F:\paywei)
+10:11:37.628 paywei [main] INFO  com.demo.paywei.PayweiApplication - No active profile set, falling back to default profiles: default
+10:11:38.320 paywei [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+10:11:38.326 paywei [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+10:11:38.326 paywei [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+10:11:38.326 paywei [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.29]
+10:11:38.427 paywei [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+10:11:38.427 paywei [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 769 ms
+10:11:38.724 paywei [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+10:11:38.767 paywei [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+10:11:38.895 paywei [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+10:11:38.915 paywei [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+10:11:38.917 paywei [main] INFO  com.demo.paywei.PayweiApplication - Started PayweiApplication in 1.486 seconds (JVM running for 3.215)
+10:11:44.653 paywei [http-nio-8080-exec-1] INFO  o.a.tomcat.util.http.parser.Cookie - A cookie header was received [1600762349,1600829568; JSESSIONID=8871F00F571A1932C57643B4DA40720B] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+10:11:44.661 paywei [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+10:11:44.662 paywei [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+10:11:44.666 paywei [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 4 ms
+10:11:44.716 paywei [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+10:11:44.988 paywei [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+10:13:05.154 paywei [main] INFO  com.demo.paywei.PayweiApplication - Starting PayweiApplication on DESKTOP-4IL9A7A with PID 15872 (F:\paywei\target\classes started by Yang in F:\paywei)
+10:13:05.156 paywei [main] INFO  com.demo.paywei.PayweiApplication - No active profile set, falling back to default profiles: default
+10:13:06.062 paywei [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+10:13:06.069 paywei [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+10:13:06.070 paywei [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+10:13:06.070 paywei [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.29]
+10:13:06.214 paywei [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+10:13:06.215 paywei [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1017 ms
+10:13:06.599 paywei [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+10:13:06.652 paywei [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+10:13:06.819 paywei [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+10:13:06.842 paywei [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+10:13:06.846 paywei [main] INFO  com.demo.paywei.PayweiApplication - Started PayweiApplication in 1.965 seconds (JVM running for 4.041)
+10:13:07.416 paywei [http-nio-8080-exec-1] INFO  o.a.tomcat.util.http.parser.Cookie - A cookie header was received [1600762349,1600829568; JSESSIONID=636DAB2F1EE52B2603C75E84378A7B1E] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+10:13:07.421 paywei [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+10:13:07.421 paywei [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+10:13:07.425 paywei [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 4 ms
+10:13:07.471 paywei [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+10:13:07.695 paywei [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.

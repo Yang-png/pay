@@ -1,0 +1,36 @@
+12:02:12.276 paywei [main] INFO  com.demo.paywei.PayweiApplication - Starting PayweiApplication on DESKTOP-4IL9A7A with PID 8680 (F:\paywei\target\classes started by Yang in F:\paywei)
+12:02:12.278 paywei [main] INFO  com.demo.paywei.PayweiApplication - No active profile set, falling back to default profiles: default
+12:02:12.994 paywei [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+12:02:13.000 paywei [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+12:02:13.001 paywei [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+12:02:13.001 paywei [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.29]
+12:02:13.113 paywei [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+12:02:13.113 paywei [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 801 ms
+12:02:13.416 paywei [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+12:02:13.460 paywei [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+12:02:13.586 paywei [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+12:02:13.608 paywei [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+12:02:13.610 paywei [main] INFO  com.demo.paywei.PayweiApplication - Started PayweiApplication in 1.589 seconds (JVM running for 3.264)
+12:02:13.647 paywei [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+12:02:13.648 paywei [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+12:02:13.651 paywei [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+12:02:13.689 paywei [http-nio-8080-exec-3] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+12:02:13.885 paywei [http-nio-8080-exec-3] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+12:02:36.081 paywei [main] INFO  com.demo.paywei.PayweiApplication - Starting PayweiApplication on DESKTOP-4IL9A7A with PID 3960 (F:\paywei\target\classes started by Yang in F:\paywei)
+12:02:36.083 paywei [main] INFO  com.demo.paywei.PayweiApplication - No active profile set, falling back to default profiles: default
+12:02:36.790 paywei [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+12:02:36.796 paywei [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+12:02:36.796 paywei [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+12:02:36.797 paywei [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.29]
+12:02:36.900 paywei [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+12:02:36.901 paywei [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 787 ms
+12:02:37.374 paywei [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+12:02:37.426 paywei [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+12:02:37.588 paywei [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+12:02:37.605 paywei [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+12:02:37.607 paywei [main] INFO  com.demo.paywei.PayweiApplication - Started PayweiApplication in 1.719 seconds (JVM running for 3.317)
+12:02:40.103 paywei [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+12:02:40.104 paywei [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+12:02:40.108 paywei [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 4 ms
+12:02:40.353 paywei [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+12:02:40.580 paywei [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.

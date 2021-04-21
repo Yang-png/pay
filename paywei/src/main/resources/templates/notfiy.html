@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>车辆停车费用</title>
+    <script src="js/jquery-1.12.4.js"></script>
+    <style type="text/css">
+        .layui-btn {
+            width: 45%;
+            height: 160px;
+            margin-left: 30%;
+            margin-top: 5%;
+            font-size: 50px;
+            background-color: #48CAAE;
+            text-align: center;
+        }
+
+        #timer{
+            margin-top: 2%;
+            margin-left: 2%;
+            font-size: 30px;
+        }
+
+        div {
+            width: 100%;
+            margin-top: 3%;
+            text-align: center;
+        }
+
+        span {
+            color: #E7A352;
+            font-size: 70px;
+            margin-top: 2%;
+            margin-bottom: 1%;
+        }
+
+        h2 {
+            font-size: 45px;
+        }
+
+        h1 {
+            font-size: 60px;
+        }
+    </style>
+    <script type="text/javascript">
+        var maxtime = 60 * 3; //一个小时，按秒计算，自己调整!
+
+        function CountDown() {
+            var parkId = $("#parkId").val();
+            if (maxtime >= 0) {
+                minutes = Math.floor(maxtime / 60);
+                seconds = Math.floor(maxtime % 60);
+                msg = "请在" + minutes + "分" + seconds + "秒内完成支付";
+                document.all["timer"].innerHTML = msg;
+                --maxtime;
+            } else {
+                clearInterval(timer);
+                window.location.href = "/payweiNew/?parkId="+parkId;
+            }
+        }
+
+        $(function () {
+            timer = setInterval("CountDown()", 1000);
+        })
+    </script>
+
+</head>
+
+<script>
+
+    $(function () {
+        var stayTime = $("#stayTime").val();
+        $("#stay").html(networkTime(stayTime));
+        var urlinfo = window.location.href;//获取url
+        var userName = urlinfo.split("?")[1].split("=")[1];//拆分url得到”=”后面的参数
+        $("#title").html(decodeURI(userName));
+
+        $("#ztreeBu").click(function () {
+            var merchants = $("#merchants").val();
+            if ("支付宝" == merchants) {
+                window.location.href = "http://www.shmuyun.cn/payweiNew/alipay/webPay";
+            } else {
+                window.location.href = "pay.html";
+            }
+        });
+    });
+
+
+    function networkTime(netConnectTime) {
+        var currentTime = parseInt(new Date().getTime()/1000);//当前时间
+        var hasUseTime = parseInt(currentTime - netConnectTime);
+        var returnObj = {};
+        // 1 时 = 3600秒 1分 = 60秒
+        if (hasUseTime  < 60) {
+            if (hasUseTime < 0) {
+                returnObj = "0秒" ;
+            }else{
+                returnObj = parseInt(hasUseTime)+"秒";
+            }
+            return returnObj;
+
+        }else if (hasUseTime >= 60 &&  hasUseTime <= 3600) {
+            if ( hasUseTime > 300) {  //大于5分钟标红
+                returnObj = parseInt(hasUseTime/60)+"分钟前";
+                return returnObj;
+            }else {
+                returnObj = parseInt(hasUseTime/60)+"分钟前";
+                return returnObj;
+            }
+        }else if (hasUseTime > 3600 && hasUseTime <= 3600*24) {
+            var h = parseInt(hasUseTime/3600);
+            var min = parseInt((hasUseTime - h*3600)/60);
+            returnObj = h+"小时"+min + "分钟";
+            return returnObj;
+
+        }else if (hasUseTime > 3600*24 ){
+            var day = parseInt( hasUseTime/ (24*3600) );
+            var hour = parseInt( (hasUseTime - day*24*3600) / 3600);
+            var minute = parseInt( (hasUseTime - day*24*3600 - hour*3600) /60 );
+            console.log("day:"+day);
+            console.log("hour:"+hour);
+            console.log("minute:"+minute);
+            /*  var day = parseInt(hasUseTime/(3600*24)); //天数
+              var hour = parseInt(hasUseTime % (60*24));   // hasUseTime % 3600 求余数分钟
+              var minute =  hasUseTime % (3600*24)*/
+            returnObj = day+ "天"+hour+"小时"+minute+'分钟';
+            return returnObj;
+        }
+    }
+
+
+</script>
+
+<body style="width: 100%;height: 100%;padding: 0px;background-color: #E0DEDE;">
+<div>
+    <h1 id="title"></h1>
+</div>
+<hr>
+<div><h2>车牌号</h2>&nbsp;<span id="license" th:text="${session.license}"></span></div>
+<div><h2>车辆进场时间</h2>&nbsp;<span id="enterTime" th:text="${session.enterTime}"></span></div>
+<div><h2>停留时间</h2><span id="stay"><!--<font id="day" th:text="${session.day}"></font>天&nbsp;<font
+        id="stay" th:text="${session.stay}"></font>小时--></span>
+</div>
+<div><h2>优惠</h2>&nbsp;<span>￥<font id="discount"
+                                     th:text="${session.discount}"></font></span>
+</div>
+<div><h2>停车费用</h2>&nbsp;<span>￥<font id="amount"
+                                     th:text="${session.small_amount}"></font></span>
+</div>
+<button id="ztreeBu" class="layui-btn">立即支付</button>
+<div id="timer" style="color:red"></div>
+<div id="warring" style="color:red"></div>
+
+<input type="hidden" id="merchants" th:attr="value = ${session.merchants}">
+<input type="hidden" id="parkId" th:attr="value = ${session.parkId}">
+<input type="hidden" id="stayTime" th:attr="value = ${session.stayTime}">
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>微信支付</title>
+    <script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+</head>
+<body>
+
+<script type="text/javascript">
+    $(function () {
+        onBridgeReady();
+    })
+
+
+    function onBridgeReady() {
+        WeixinJSBridge.invoke(
+            'getBrandWCPayRequest', {
+                "appId": $("#appId").val(),     //公众号名称，由商户传入
+                "timeStamp": $("#timeStamp").val(),         //时间戳，自1970年以来的秒数
+                "nonceStr": $("#nonceStr").val(), //随机串
+                "package": $("#package").val(),
+                "signType": $("#signType").val(),         //微信签名方式
+                "paySign": $("#paySign").val() //微信签名
+            },
+            function (res) {
+                if (res.err_msg == "get_brand_wcpay_request:ok") {
+                    if("rentCar" == $("#notify").val()){ //月租续约付款回调
+                        var parkId = $("#parkId").val();
+                        window.location.href = "http://www.shmuyun.cn/payweiNew/rentCarIndex.html?parkId="+parkId;
+                    }else{
+                        window.location.href = "payOk.html";
+                    }
+
+                    // 使用以上方式判断前端返回,微信团队郑重提示：
+                    //res.err_msg将在用户支付成功后返回ok，但并不保证它绝对可靠。
+                }
+
+            });
+    }
+
+    if (typeof WeixinJSBridge == "undefined") {
+        if (document.addEventListener) {
+            document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+        } else if (document.attachEvent) {
+            document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+            document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+        }
+    } else {
+        onBridgeReady();
+    }
+
+
+</script>
+
+<input type="hidden" id="notify" th:attr="value=${session.notify}">
+<input type="hidden" id="parkId" th:attr="value=${session.parkId}">
+
+<input type="hidden" id="appId" th:attr="value = ${session.params.get('appId')}">
+<input type="hidden" id="timeStamp" th:attr="value = ${session.params.get('timeStamp')}">
+<input type="hidden" id="nonceStr" th:attr="value = ${session.params.get('nonceStr')}">
+<input type="hidden" id="package" th:attr="value = ${session.params.get('package')}">
+<input type="hidden" id="signType" th:attr="value = ${session.params.get('signType')}">
+<input type="hidden" id="paySign" th:attr="value = ${session.params.get('paySign')}">
+
+</body>
+</html>

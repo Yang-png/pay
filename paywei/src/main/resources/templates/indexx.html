@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>车牌查询入口</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="css/history.css"/>
+    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            //读取cookie
+            if (document.cookie.length > 0) {
+                var strcookie = document.cookie;//获取cookie字符串
+                var arrcookie = strcookie.split(";");//分割
+                var inss = arrcookie[arrcookie.length - 1];
+                var ins = inss.split("=");
+                if (ins[0] == " ins" || ins[0] == "ins") {
+                    alert(ins[1]);
+                }
+            }
+        });
+    </script>
+</head>
+<body background="img/bg.jpg">
+<div style="text-align: center;">
+    <h2 id="title" style="color: #424344;font-size: 35px">智能停车场</h2>
+</div>
+<!--<a href="JavaScript:history.back(-1)"><img src="img/back.png" style="position: absolute;top:1.7rem;left: 1rem;"/></a>-->
+<div style="margin-top: 13%">
+    <img src="img/icon_search.png" style="position: absolute;left: 17%;margin-top: 1%;height:1.6rem;"/>
+    <select style="margin-left: 3%" id="loc">
+        <option value="沪">沪</option>
+        <option value="京">京</option>
+        <option value="津">津</option>
+        <option value="渝">渝</option>
+        <option value="鲁">鲁</option>
+        <option value="冀">冀</option>
+        <option value="晋">晋</option>
+        <option value="蒙">蒙</option>
+        <option value="辽">辽</option>
+        <option value="吉">吉</option>
+        <option value="黑">黑</option>
+        <option value="苏">苏</option>
+        <option value="浙">浙</option>
+        <option value="皖">皖</option>
+        <option value="闽">闽</option>
+        <option value="赣">赣</option>
+        <option value="豫">豫</option>
+        <option value="湘">湘</option>
+        <option value="鄂">鄂</option>
+        <option value="粤">粤</option>
+        <option value="桂">桂</option>
+        <option value="琼">琼</option>
+        <option value="川">川</option>
+        <option value="贵">贵</option>
+        <option value="云">云</option>
+        <option value="藏">藏</option>
+        <option value="陕">陕</option>
+        <option value="甘">甘</option>
+        <option value="青">青</option>
+        <option value="宁">宁</option>
+        <option value="新">新</option>
+        <option value=" "></option>
+    </select>
+    <input class="" id="idNumber1"
+           style="outline-style: none;background-color: #eee;text-indent:3rem;text-overflow:ellipsis;"
+           onkeyup="this.value=this.value.toUpperCase()">
+    <button id="search">查询停车费</button>
+    <div style="text-align: center;">
+        <h3 style="color: #2096BF;font-size: 18px">如需离场请先缴费再驶入出口识别区</h3>
+        <h3 style="color: #2096BF;font-size: 18px">缴费后需在<span id="time" style="color:#D5CB63;"></span>分钟内离场</h3>
+    </div>
+    <!--<p style="margin-top: .5rem;border-top: 1px solid #9A9A9A;font-family: '微软雅黑';">历史</p>-->
+    <ui class="delete history" style="width: 100%;margin-top: -1rem;">
+    </ui>
+    <div class="history" id="his-dele"><img src="img/icon_search_del.png"
+                                            style="width:.98rem;height:.92rem;display: inline-block;"/>清除记录
+    </div>
+</div>
+</body>
+<script>
+    var uuid;
+    var soluUuid;
+    var parkId = GetUrlParam("parkId");
+
+
+    $(function () {
+
+        //根据停车场编码获取park信息
+        $.ajax({
+            url: "getParkId",
+            type: "post",
+            data: {
+                parkId: parkId
+            },
+            dataType: "json",
+            success: function (data) {
+                uuid = data.uuid;
+                soluUuid = data.baseTempTollSolutionUuid;
+                $("#title").html(data.name);
+                $("#time").html(data.time);
+            }
+        });
+
+        //苹果手机不兼容出现input无法取值以下是解决方法
+        $('.word-break').click(function () {
+            var license = $(this).text();
+            if (license.indexOf("") == -1) { //等于-1表示这个字符串中没有o这个字符
+                var loc = license.slice(0, 1);
+                var select = document.getElementById("loc");
+                set_select_checked(select, loc);
+                license = license.slice(1, license.length);
+            } else {  //不存在空""
+                var loc = license.slice(0, 1);
+                var select = document.getElementById("loc");
+                set_select_checked(select, loc);
+                license = license.slice(1, license.length);
+            }
+            $('#idNumber1').val(license);
+        });
+
+    });
+
+    $(document).delegate(".delete>li", "click", function () {
+        var license = $(this).text();
+        if (license.indexOf("") == -1) { //等于-1表示这个字符串中没有o这个字符
+            var loc = license.slice(0, 1);
+            var select = document.getElementById("loc");
+            set_select_checked(select, loc);
+            license = license.slice(1, license.length);
+        } else {  //不存在空""
+            var loc = license.slice(0, 1);
+            var select = document.getElementById("loc");
+            set_select_checked(select, loc);
+            license = license.slice(1, license.length);
+        }
+        $('#idNumber1').val(license);
+    });
+
+
+    //根据输入的参数名称获取url栏对应的值
+    function GetUrlParam(paraName) {
+        var url = document.location.toString();
+        var arrObj = url.split("?");
+        if (arrObj.length > 1) {
+            var arrPara = arrObj[1].split("&");
+            var arr;
+            for (var i = 0; i < arrPara.length; i++) {
+                arr = arrPara[i].split("=");
+
+                if (arr != null && arr[0] == paraName) {
+                    return arr[1];
+                }
+            }
+            return "";
+        }
+        else {
+            return "";
+        }
+    }
+
+    /**
+     * 设置select控件选中
+     * @param selectId select的id值
+     * @param checkValue 选中option的值
+     * @author 标哥
+     */
+    function set_select_checked(select, checkValue) {
+        for (var i = 0; i < select.options.length; i++) {
+            if (select.options[i].value == checkValue) {
+                select.options[i].selected = true;
+                break;
+            }
+        }
+    }
+
+
+    /*搜索记录相关*/
+    //从localStorage获取搜索时间的数组
+    var hisTime;
+    //从localStorage获取搜索内容的数组
+    var hisItem;
+    //从localStorage获取最早的1个搜索时间
+    var firstKey;
+
+    function init() {
+        //每次执行都把2个数组置空
+        hisTime = [];
+        hisItem = [];
+        //模拟localStorage本来有的记录
+        //localStorage.setItem("a",12333);
+        //本函数内的两个for循环用到的变量
+        var i = 0
+        for (; i < localStorage.length; i++) {
+            if (!isNaN(localStorage.key(i))) {
+                hisItem.push(localStorage.getItem(localStorage.key(i)));
+                hisTime.push(localStorage.key(i));
+            }
+        }
+        i = 0;
+        //执行init(),每次清空之前添加的节点
+        $(".delete").html("");
+        for (; i < hisItem.length; i++) {
+            //alert(hisItem);
+            $(".delete").prepend('<li class="word-break" style=" z-index: 1000;">' + hisItem[i] + '</li>')
+        }
+    }
+
+    init();
+
+    $("#search").click(function () {
+        var value = $("#idNumber1").val();
+        var time = (new Date()).getTime();
+
+        if (!value) {
+            alert("请输入搜索内容");
+            return false;
+        }
+
+        value = $("#loc").val() + value;
+
+
+        //输入的内容localStorage有记录
+        if ($.inArray(value, hisItem) >= 0) {
+            for (var j = 0; j < localStorage.length; j++) {
+                if (value == localStorage.getItem(localStorage.key(j))) {
+                    localStorage.removeItem(localStorage.key(j));
+                }
+            }
+            localStorage.setItem(time, value);
+        }
+        //输入的内容localStorage没有记录
+        else {
+            //由于限制了只能有6条记录，所以这里进行判断
+            if (hisItem.length > 10) {
+                firstKey = hisTime[0]
+                localStorage.removeItem(firstKey);
+                localStorage.setItem(time, value);
+            } else {
+                localStorage.setItem(time, value)
+            }
+        }
+        init();
+
+        $.ajax({
+            url: "getAmount",
+            type: "post",
+            data: {
+                uuid: uuid,
+                license: value,
+                soluUuid: soluUuid
+            },
+            dataType: "text",
+            success: function (data) {
+                if (data == 'FALSE') {
+                    alert("此车辆不在场或已线上支付");
+                } else {
+                    var title = $("#title").html();
+                    /* window.location.href = "notfiy.html?title=" + title;*/
+                    window.location.href = encodeURI("notfiy.html?title=" + title);
+                }
+
+            }
+        })
+        //正式的时候要提交的！！！
+        //$("#form1").submit()
+
+    });
+
+    // 只提取汉字
+    function GetChinese(strValue) {
+        if (strvalue !== null && strvalue !== '') {
+            const reg = /[\u4e00-\u9fa5]/g;
+            return strvalue.match(reg).join('');
+        }
+        return '';
+    }
+
+    //清除记录功能
+    $("#his-dele").click(function () {
+        var f = 0;
+        for (; f < hisTime.length; f++) {
+            localStorage.removeItem(hisTime[f]);
+        }
+        init();
+    });
+
+    $(".x").click(function () {
+        var index = $(this).parent().index;
+        alert(indexx);
+        init();
+    });
+
+</script>
+</html>
